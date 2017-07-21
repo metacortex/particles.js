@@ -1426,7 +1426,7 @@ Object.deepExtend = function(destination, source) {
   return destination;
 };
 
-if (window) {
+if (typeof(window) !== 'undefined') {
 
   window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame ||
