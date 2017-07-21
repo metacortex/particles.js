@@ -157,9 +157,9 @@ var pJS = function(tag_id, params){
   pJS.fn.retinaInit = function(){
 
     if(pJS.retina_detect && window.devicePixelRatio > 1){
-      pJS.canvas.pxratio = window.devicePixelRatio; 
+      pJS.canvas.pxratio = window.devicePixelRatio;
       pJS.tmp.retina = true;
-    } 
+    }
     else{
       pJS.canvas.pxratio = 1;
       pJS.tmp.retina = false;
@@ -363,7 +363,7 @@ var pJS = function(tag_id, params){
     this.vx_i = this.vx;
     this.vy_i = this.vy;
 
-    
+
 
     /* if shape is image */
 
@@ -392,7 +392,7 @@ var pJS = function(tag_id, params){
       }
     }
 
-    
+
 
   };
 
@@ -402,7 +402,7 @@ var pJS = function(tag_id, params){
     var p = this;
 
     if(p.radius_bubble != undefined){
-      var radius = p.radius_bubble; 
+      var radius = p.radius_bubble;
     }else{
       var radius = p.radius;
     }
@@ -491,9 +491,9 @@ var pJS = function(tag_id, params){
       pJS.canvas.ctx.lineWidth = pJS.particles.shape.stroke.width;
       pJS.canvas.ctx.stroke();
     }
-    
+
     pJS.canvas.ctx.fill();
-    
+
   };
 
 
@@ -664,7 +664,7 @@ var pJS = function(tag_id, params){
     pJS.tmp.count_svg = 0;
     pJS.fn.particlesEmpty();
     pJS.fn.canvasClear();
-    
+
     /* restart */
     pJS.fn.vendors.start();
 
@@ -684,14 +684,14 @@ var pJS = function(tag_id, params){
 
       var opacity_line = pJS.particles.line_linked.opacity - (dist / (1/pJS.particles.line_linked.opacity)) / pJS.particles.line_linked.distance;
 
-      if(opacity_line > 0){        
-        
+      if(opacity_line > 0){
+
         /* style */
         var color_line = pJS.particles.line_linked.color_rgb_line;
         pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+','+opacity_line+')';
         pJS.canvas.ctx.lineWidth = pJS.particles.line_linked.width;
         //pJS.canvas.ctx.lineCap = 'round'; /* performance issue */
-        
+
         /* path */
         pJS.canvas.ctx.beginPath();
         pJS.canvas.ctx.moveTo(p1.x, p1.y);
@@ -725,7 +725,7 @@ var pJS = function(tag_id, params){
       p2.vy += ay;
 
     }
-    
+
 
   }
 
@@ -805,7 +805,7 @@ var pJS = function(tag_id, params){
       if(dist_mouse <= pJS.interactivity.modes.bubble.distance){
 
         if(ratio >= 0 && pJS.interactivity.status == 'mousemove'){
-          
+
           /* size */
           if(pJS.interactivity.modes.bubble.size != pJS.particles.size.value){
 
@@ -854,7 +854,7 @@ var pJS = function(tag_id, params){
       if(pJS.interactivity.status == 'mouseleave'){
         init();
       }
-    
+
     }
 
     /* on click event */
@@ -933,7 +933,7 @@ var pJS = function(tag_id, params){
           repulseRadius = pJS.interactivity.modes.repulse.distance,
           velocity = 100,
           repulseFactor = clamp((1/repulseRadius)*(-1*Math.pow(dist_mouse/repulseRadius,2)+1)*repulseRadius*velocity, 0, 50);
-      
+
       var pos = {
         x: p.x + normVec.x * repulseFactor,
         y: p.y + normVec.y * repulseFactor
@@ -946,7 +946,7 @@ var pJS = function(tag_id, params){
         p.x = pos.x;
         p.y = pos.y;
       }
-    
+
     }
 
 
@@ -1001,7 +1001,7 @@ var pJS = function(tag_id, params){
         // }else{
         //   process();
         // }
-        
+
 
       }else{
 
@@ -1009,7 +1009,7 @@ var pJS = function(tag_id, params){
 
           p.vx = p.vx_i;
           p.vy = p.vy_i;
-        
+
         }
 
       }
@@ -1039,7 +1039,7 @@ var pJS = function(tag_id, params){
           pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+','+opacity_line+')';
           pJS.canvas.ctx.lineWidth = pJS.particles.line_linked.width;
           //pJS.canvas.ctx.lineCap = 'round'; /* performance issue */
-          
+
           /* path */
           pJS.canvas.ctx.beginPath();
           pJS.canvas.ctx.moveTo(p.x, p.y);
@@ -1155,7 +1155,7 @@ var pJS = function(tag_id, params){
         }
 
       });
-        
+
     }
 
 
@@ -1359,7 +1359,7 @@ var pJS = function(tag_id, params){
           pJS.fn.vendors.init();
           pJS.fn.vendors.draw();
         }
-        
+
       }
 
     }else{
@@ -1406,7 +1406,7 @@ var pJS = function(tag_id, params){
   pJS.fn.vendors.eventsListeners();
 
   pJS.fn.vendors.start();
-  
+
 
 
 };
@@ -1426,116 +1426,119 @@ Object.deepExtend = function(destination, source) {
   return destination;
 };
 
-window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame    ||
-    window.oRequestAnimationFrame      ||
-    window.msRequestAnimationFrame     ||
-    function(callback){
-      window.setTimeout(callback, 1000 / 60);
-    };
-})();
+if (window) {
 
-window.cancelRequestAnimFrame = ( function() {
-  return window.cancelAnimationFrame         ||
-    window.webkitCancelRequestAnimationFrame ||
-    window.mozCancelRequestAnimationFrame    ||
-    window.oCancelRequestAnimationFrame      ||
-    window.msCancelRequestAnimationFrame     ||
-    clearTimeout
-} )();
+  window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame    ||
+      window.oRequestAnimationFrame      ||
+      window.msRequestAnimationFrame     ||
+      function(callback){
+        window.setTimeout(callback, 1000 / 60);
+      };
+  })();
 
-function hexToRgb(hex){
-  // By Tim Down - http://stackoverflow.com/a/5624139/3493650
-  // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-     return r + r + g + g + b + b;
-  });
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-  } : null;
-};
+  window.cancelRequestAnimFrame = ( function() {
+    return window.cancelAnimationFrame         ||
+      window.webkitCancelRequestAnimationFrame ||
+      window.mozCancelRequestAnimationFrame    ||
+      window.oCancelRequestAnimationFrame      ||
+      window.msCancelRequestAnimationFrame     ||
+      clearTimeout
+  } )();
 
-function clamp(number, min, max) {
-  return Math.min(Math.max(number, min), max);
-};
+  function hexToRgb(hex){
+    // By Tim Down - http://stackoverflow.com/a/5624139/3493650
+    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+       return r + r + g + g + b + b;
+    });
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+  };
 
-function isInArray(value, array) {
-  return array.indexOf(value) > -1;
-}
+  function clamp(number, min, max) {
+    return Math.min(Math.max(number, min), max);
+  };
 
-
-/* ---------- particles.js functions - start ------------ */
-
-window.pJSDom = [];
-
-window.particlesJS = function(tag_id, params){
-
-  //console.log(params);
-
-  /* no string id? so it's object params, and set the id with default id */
-  if(typeof(tag_id) != 'string'){
-    params = tag_id;
-    tag_id = 'particles-js';
+  function isInArray(value, array) {
+    return array.indexOf(value) > -1;
   }
 
-  /* no id? set the id to default id */
-  if(!tag_id){
-    tag_id = 'particles-js';
-  }
 
-  /* pJS elements */
-  var pJS_tag = document.getElementById(tag_id),
-      pJS_canvas_class = 'particles-js-canvas-el',
-      exist_canvas = pJS_tag.getElementsByClassName(pJS_canvas_class);
+  /* ---------- particles.js functions - start ------------ */
 
-  /* remove canvas if exists into the pJS target tag */
-  if(exist_canvas.length){
-    while(exist_canvas.length > 0){
-      pJS_tag.removeChild(exist_canvas[0]);
+  window.pJSDom = [];
+
+  window.particlesJS = function(tag_id, params){
+
+    //console.log(params);
+
+    /* no string id? so it's object params, and set the id with default id */
+    if(typeof(tag_id) != 'string'){
+      params = tag_id;
+      tag_id = 'particles-js';
     }
-  }
 
-  /* create canvas element */
-  var canvas_el = document.createElement('canvas');
-  canvas_el.className = pJS_canvas_class;
+    /* no id? set the id to default id */
+    if(!tag_id){
+      tag_id = 'particles-js';
+    }
 
-  /* set size canvas */
-  canvas_el.style.width = "100%";
-  canvas_el.style.height = "100%";
+    /* pJS elements */
+    var pJS_tag = document.getElementById(tag_id),
+        pJS_canvas_class = 'particles-js-canvas-el',
+        exist_canvas = pJS_tag.getElementsByClassName(pJS_canvas_class);
 
-  /* append canvas */
-  var canvas = document.getElementById(tag_id).appendChild(canvas_el);
-
-  /* launch particle.js */
-  if(canvas != null){
-    pJSDom.push(new pJS(tag_id, params));
-  }
-
-};
-
-window.particlesJS.load = function(tag_id, path_config_json, callback){
-
-  /* load json config */
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', path_config_json);
-  xhr.onreadystatechange = function (data) {
-    if(xhr.readyState == 4){
-      if(xhr.status == 200){
-        var params = JSON.parse(data.currentTarget.response);
-        window.particlesJS(tag_id, params);
-        if(callback) callback();
-      }else{
-        console.log('Error pJS - XMLHttpRequest status: '+xhr.status);
-        console.log('Error pJS - File config not found');
+    /* remove canvas if exists into the pJS target tag */
+    if(exist_canvas.length){
+      while(exist_canvas.length > 0){
+        pJS_tag.removeChild(exist_canvas[0]);
       }
     }
-  };
-  xhr.send();
 
-};
+    /* create canvas element */
+    var canvas_el = document.createElement('canvas');
+    canvas_el.className = pJS_canvas_class;
+
+    /* set size canvas */
+    canvas_el.style.width = "100%";
+    canvas_el.style.height = "100%";
+
+    /* append canvas */
+    var canvas = document.getElementById(tag_id).appendChild(canvas_el);
+
+    /* launch particle.js */
+    if(canvas != null){
+      pJSDom.push(new pJS(tag_id, params));
+    }
+
+  };
+
+  window.particlesJS.load = function(tag_id, path_config_json, callback){
+
+    /* load json config */
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', path_config_json);
+    xhr.onreadystatechange = function (data) {
+      if(xhr.readyState == 4){
+        if(xhr.status == 200){
+          var params = JSON.parse(data.currentTarget.response);
+          window.particlesJS(tag_id, params);
+          if(callback) callback();
+        }else{
+          console.log('Error pJS - XMLHttpRequest status: '+xhr.status);
+          console.log('Error pJS - File config not found');
+        }
+      }
+    };
+    xhr.send();
+
+  };
+}
